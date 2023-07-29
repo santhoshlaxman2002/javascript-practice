@@ -6,9 +6,13 @@
     <title>Rock-PaperScissors</title>
 </head>
 <body>
+    <p>Rock Paper Scissors</p>
     <button onclick="playGame('rock')">Rock</button>
     <button onclick="playGame('paper')">Paper</button>
     <button onclick="playGame('scissors')">Scissors</button>
+    <p class="result"></p>
+    <p class="pick"></p>
+    <p class="scorecard">Win : 0 Lose : 0 Tie : 0</p>
     <button onclick="reset()">Reset</button>
     <script>
         const obj=JSON.parse(localStorage.getItem('score'))||{
@@ -17,8 +21,11 @@
             tie:0
         };
         function reset(){
+            obj.win=0;
+            obj.lose=0;
+            obj.tie=0;
+            document.querySelector('.scorecard').innerHTML=`win : ${obj.win} Lose : ${obj.lose} Tie : ${obj.tie}`;
             localStorage.removeItem('score');
-            alert('Hello Game Reseted');
         }
         function computerPick(){
             const val=Math.random();
@@ -37,48 +44,49 @@
             const computer=computerPick();
             if(selection==='rock'){
                 if(computer==='rock'){
-                    result='tie';
+                    result='Tie';
                 }
                 else if(computer==='paper'){
-                    result='you lose.';
+                    result='You lose.';
                 }
                 else{
-                    result='you win!.';
+                    result='You win!.';
                 }
             }
             else if(selection==='paper'){
                 if(computer==='rock'){
-                    result='you lose.';
+                    result='You lose.';
                 }
                 else if(computer==='paper'){
-                    result='tie';
+                    result='Tie';
                 }
                 else{
-                    result='you lose.';
+                    result='You lose.';
                 }
             }
             else{
                 if(computer==='rock'){
-                    result='you lose.';
+                    result='You lose.';
                 }
                 else if(computer==='paper'){
-                    result='you win!.';
+                    result='You win!.';
                 }
                 else{
-                    result='tie';
+                    result='Tie';
                 }
             }
-            if(result==='you lose.'){
+            if(result==='You lose.'){
                 obj.lose++;
             }
-            else if(result==='you win!.'){
+            else if(result==='You win!.'){
                 obj.win++;
             }
             else{
                 obj.tie++;
             }
-            alert(`You Picked ${selection} , Computer Picked ${computer} And ${result}
-Win : ${obj.win} Lose : ${obj.lose} Tie : ${obj.tie}`);
+            document.querySelector('.result').innerHTML=result;
+            document.querySelector('.pick').innerHTML=`You Picked ${selection} Computer Picked ${computer}`;
+            document.querySelector('.scorecard').innerHTML=`Win : ${obj.win} Lose : ${obj.lose} Tie : ${obj.tie}`;
             localStorage.setItem('score',JSON.stringify(obj));
         }
     </script>

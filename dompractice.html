@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM PRACTICE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick="youtube()" class="subscribe">Subscribe</button>
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+    <input placeholder="Cost of order" onkeydown="checkenter(event)">
+    <button onclick="calculate()" class="cal-button">Calculate</button>
+    <p class="show-result"></p>
+    <script>
+        function youtube(){
+            const value=document.querySelector('.subscribe');
+            if(value.innerHTML=='Subscribe'){
+                value.innerHTML='Subscribed';
+                value.classList.add('sub-after-click');
+            }
+            else{
+                value.innerHTML='Subscribe';
+                value.classList.remove('sub-after-click');
+            }
+        }
+        function calculate(){
+            let obj=document.querySelector('input');
+            let value=Number(obj.value);
+            if(value<40){
+                value+=10;
+            }
+            document.querySelector('.show-result').innerHTML=`$${value}`;
+        }
+        function checkenter(event){
+            const key=event.key;
+            if(key==='Enter'){
+                calculate();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body{
+    font-family: Arial;
+}
+.subscribe{
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 50px;
+    border: none;
+    margin-bottom: 50px;
+}
+.sub-after-click{
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
+input{
+    height: 20px;
+    padding: 10px;
+    font-size: 15px;
+}
+.cal-button{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-weight: bold;
+}
