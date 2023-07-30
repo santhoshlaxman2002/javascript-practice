@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-PaperScissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>Rock Paper Scissors</p>
-    <button onclick="playGame('rock')">Rock</button>
-    <button onclick="playGame('paper')">Paper</button>
-    <button onclick="playGame('scissors')">Scissors</button>
-    <p class="result"></p>
-    <p class="pick"></p>
-    <p class="scorecard">Win : 0 Lose : 0 Tie : 0</p>
-    <button onclick="reset()">Reset</button>
+    <div class="container"><p class="title">Rock Paper Scissors</p>
+        <button class="pick-button" onclick="playGame('rock')"><img class="emoji" src="emoji/rock-emoji.png" alt=""></button>
+        <button class="pick-button" onclick="playGame('paper')"><img class="emoji" src="emoji/paper-emoji.png" alt=""></button>
+        <button class="pick-button" onclick="playGame('scissors')"><img class="emoji" src="emoji/scissors-emoji.png" alt=""></button>
+        <p class="result"></p>
+        <p class="pick"></p>
+        <p class="scorecard">Win : 0 Lose : 0 Tie : 0</p>
+        <button class="reset-button" onclick="reset()">Reset</button>
+    </div>
     <script>
         const obj=JSON.parse(localStorage.getItem('score'))||{
             win:0,
@@ -24,6 +26,8 @@
             obj.win=0;
             obj.lose=0;
             obj.tie=0;
+            document.querySelector('.result').innerHTML='';
+            document.querySelector('.pick').innerHTML='';
             document.querySelector('.scorecard').innerHTML=`win : ${obj.win} Lose : ${obj.lose} Tie : ${obj.tie}`;
             localStorage.removeItem('score');
         }
@@ -44,7 +48,7 @@
             const computer=computerPick();
             if(selection==='rock'){
                 if(computer==='rock'){
-                    result='Tie';
+                    result='  Tie';
                 }
                 else if(computer==='paper'){
                     result='You lose.';
@@ -58,7 +62,7 @@
                     result='You lose.';
                 }
                 else if(computer==='paper'){
-                    result='Tie';
+                    result='  Tie';
                 }
                 else{
                     result='You lose.';
@@ -72,7 +76,7 @@
                     result='You win!.';
                 }
                 else{
-                    result='Tie';
+                    result='  Tie';
                 }
             }
             if(result==='You lose.'){
@@ -85,7 +89,7 @@
                 obj.tie++;
             }
             document.querySelector('.result').innerHTML=result;
-            document.querySelector('.pick').innerHTML=`You Picked ${selection} Computer Picked ${computer}`;
+            document.querySelector('.pick').innerHTML=`You Picked <img src="emoji/${selection}-emoji.png" class="emoji"> <img src="emoji/${computer}-emoji.png" class="emoji">Computer Picked`;
             document.querySelector('.scorecard').innerHTML=`Win : ${obj.win} Lose : ${obj.lose} Tie : ${obj.tie}`;
             localStorage.setItem('score',JSON.stringify(obj));
         }
