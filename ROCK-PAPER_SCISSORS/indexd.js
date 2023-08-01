@@ -12,6 +12,23 @@ function reset(){
     document.querySelector('.scorecard').innerHTML=`win : ${obj.win} Lose : ${obj.lose} Tie : ${obj.tie}`;
     localStorage.removeItem('score');
 }
+let isAutoPlay=false;
+let intId;
+function autoPlay(){
+    if(!isAutoPlay){
+        intId = setInterval(()=>{
+            const pick=computerPick();
+            playGame(pick);
+        },1000);
+        isAutoPlay=true;
+        document.querySelector('.autoPlay-button').innerHTML='Stop';
+    }
+    else{
+        clearInterval(intId);
+        isAutoPlay=false;
+        document.querySelector('.autoPlay-button').innerHTML='Auto Play';
+    }
+}
 function computerPick(){
     const val=Math.random();
     if(val>=0&&val<1/3){

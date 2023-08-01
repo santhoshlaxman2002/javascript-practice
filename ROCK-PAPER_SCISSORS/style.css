@@ -38,9 +38,11 @@ body{
     margin-right: 20px;
     margin-left: 20px;
 }
-.reset-button{
+.reset-button,.autoPlay-button{
     padding: 10px 40px;
     background-color:rgb(188, 187, 187);
     color: black;
     font-weight: bold;
+    border: 2px solid wheat;
+    margin-bottom: 10px;
 }
